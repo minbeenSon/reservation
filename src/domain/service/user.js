@@ -77,18 +77,18 @@ export async function findUserList(manager, deleted, searchPart, searchText) {
 
     let searchParamsAND = [];
     if (manager) {
-        searchParamsAND.push({user_rank: UserRank.MANAGER});
+        searchParamsAND.push({ user_rank: UserRank.MANAGER });
     }
     if (deleted) {
-        searchParamsAND.push({deleted_at: null});
+        searchParamsAND.push({ deleted_at: null });
     }
 
     let searchParamsOR = [];
     if (searchPart !== 'email') {
-        searchParamsOR.push({nickname: {contains: searchText}});
+        searchParamsOR.push({ nickname: { contains: searchText } });
     }
     if (searchPart !== 'nickname') {
-        searchParamsOR.push({email: {contains: searchText}});
+        searchParamsOR.push({ email: { contains: searchText } });
     }
 
     return await prisma.user.findMany({
