@@ -16,7 +16,7 @@ model user {
   gender          String?       @db.VarChar(45)
   birth           String?       @db.TinyText
   country         String?       @db.VarChar(45)
-  user_rank       UserRank      
+  user_rank       UserRank?
   created_at      DateTime?     @db.DateTime(0)
   deleted_at      DateTime?     @db.DateTime(0)
   login_token     login_token[]
@@ -28,9 +28,20 @@ model login_token {
   token      String?   @db.TinyText
   created_at DateTime? @db.DateTime(0)
   expired_at DateTime? @db.DateTime(0)
-  user       user?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade, map: "login_token_user")
+  user       user?     @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "login_token_user")
 
   @@index([user_id], map: "login_token_user_idx")
+}
+
+model board {
+  id                Int       @id @default(autoincrement())
+  title             String?   @db.TinyText
+  content_text      String?   @db.Text
+  content_image_url String?   @db.TinyText
+  view_count        Int?
+  user_id           Int?
+  created_at        DateTime? @db.DateTime(0)
+  deleted_at        DateTime? @db.DateTime(0)
 }
 
 enum UserRank {
