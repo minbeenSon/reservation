@@ -1,3 +1,4 @@
+import { error } from "@sveltejs/kit";
 import { findBoardByBoardId } from "../../../../../domain/service/board";
 import { findUserByCookies } from "../../../../../domain/service/user";
 
@@ -19,6 +20,10 @@ export async function load({ params, cookies }) {
     }
 
     let board = await findBoardByBoardId(params.boardId);
+
+    if (user.id !== board.user_id) {
+        throw error(401, 'NO AUTHENTICATION');
+    }
 
     return { user: user, board: board }
 }

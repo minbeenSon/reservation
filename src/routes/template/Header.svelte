@@ -52,15 +52,17 @@
 
 	<nav class="sub-nav">
 		<ul class="sub-nav-menu">
-			<!-- <li><a href="#">예약하기</a></li>
-            <li><a href="#">나의예약</a></li> -->
-
-			<li><a href="#">프로필</a></li>
-			<li><a href="#">나의일상</a></li>
-			<li><a href="#">방명록</a></li>
-
-			<!-- <li><a href="#">즐겨찾기</a></li>
-            <li><a href="#">내정보</a></li> -->
+			{#if activeMenu === 'RESERVATION'}
+				<li><a href="#">예약하기</a></li>
+				<li><a href="#">나의예약</a></li>
+			{:else if activeMenu === 'COMMUNITY'}
+				<li><a href="#">프로필</a></li>
+				<li><a href="#">나의일상</a></li>
+				<li><a href="/community/board">방명록</a></li>
+			{:else if activeMenu === 'MYPAGE'}
+				<li><a href="#">즐겨찾기</a></li>
+				<li><a href="#">내정보</a></li>
+			{/if}
 		</ul>
 	</nav>
 </header>

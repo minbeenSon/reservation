@@ -36,29 +36,35 @@
 		<div class="my-3">
 			<a href="/community/board/write/new" class="btn btn-primary btn-lg" type="button">Write</a>
 		</div>
-		<div class="row mb-2">
-			{#each data.boardList as board}
-				<div class="col-md-6">
-					<div
-						class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-					>
-						<div class="col p-4 d-flex flex-column position-static">
-							<h3 class="mb-0">{board.title}</h3>
-							<div class="mb-1 text-body-secondary">{board.created_at}</div>
-							<p class="card-text mb-auto">{board.content_text}</p>
-							<a href="/community/board/{board.id}" class="icon-link gap-1 icon-link-hover stretched-link">
-								Continue reading
-								<svg class="bi"><use xlink:href="#chevron-right" /></svg>
-							</a>
-						</div>
-						<div class="col-auto d-none d-lg-block">
-							<img class="bd-placeholder-img" width="200" height="250" src={board.content_image_url} alt="" />
-						</div>
-					</div>
-				</div>
-			{/each}
-		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Title</th>
+					<th scope="col">Content</th>
+					<th scope="col">Creator</th>
+					<th scope="col">Date</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{#each data.boardList as board}
+					<tr>
+						<th scope="row">{board.id}</th>
+						<td><a href="/community/board/{board.id}" style="color:black">{board.title}</a></td>
+						<td><a href="/community/board/{board.id}" style="color:black">{board.content_text}</a></td>
+						<td>{board.user_id}</td>
+						<td>{board.created_at}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
 	</div>
 </main>
 
 <Footer />
+
+<style>
+	a {
+		text-decoration: none;
+	}
+</style>

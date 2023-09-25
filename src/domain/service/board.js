@@ -26,8 +26,21 @@ export async function findBoardByBoardId(boardId) {
     });
 }
 
-export async function findBoardList() {
+export async function findBoardList(searchPart, searchText) {
+
+    let searchParamsOR = [];
+    if (searchPart !== 'title') {
+        searchParamsOR.push({ content_text: { contains: searchText } });
+    }
+    if (searchPart !== 'content') {
+        searchParamsOR.push({ title: { contains: searchText } });
+    }
+
     return prisma.board.findMany({
+        where: {
+            deleted_at: null,
+            OR: searchParamsOR
+        },
         orderBy: {
             id: 'desc'
         }
@@ -35,7 +48,28 @@ export async function findBoardList() {
 }
 
 /** == UPDATE == */
+export async function updateBoard(board) {
+    await prisma.board.update({
+        where: {
+            id: board.id
+        },
+        data: {
+            title: board.title,
+            content_text: board.content_text,
+            content_image_url: board.content_image_url
+        }
+    })
+}
 
 
 /** == DELETE == */
-
+export async function deleteBoard(boardId) {
+    await prisma.board.update({
+        where: {
+            id: parseInt(boardId)
+        },
+        data: {
+            deleted_at: new Date()
+        }
+    })
+}

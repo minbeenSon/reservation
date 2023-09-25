@@ -3,7 +3,7 @@
 	import Header from '../../../../template/Header.svelte';
 
 	export let data;
-	
+
 	async function uploadImage(event) {
 		const element = event.target;
 		if (!element) return;
@@ -28,7 +28,7 @@
 
 	async function createBoard() {
 		if (!data.board.title || !data.board.content_text) {
-			alert('제목과 내용을 작성해주세요')
+			alert('제목과 내용을 작성해주세요');
 			return;
 		}
 		data.board.user_id = data.user.id;
@@ -39,12 +39,11 @@
 		});
 		if (response.status === 200) {
 			alert('Board 작성 완료');
-			location.href='/community/board'
+			location.href = '/community/board';
 		} else {
 			alert('Board 작성 실패');
 		}
 	}
-	
 </script>
 
 <Header activeMenu="COMMUNITY" isLogedIn={data.user} />
@@ -66,7 +65,13 @@
 
 		<div class="col-12">
 			<label for="title" class="form-label">Content</label>
-			<textarea class="form-control" bind:value={data.board.content_text} cols="30" rows="10" placeholder="content"></textarea>
+			<textarea
+				class="form-control"
+				bind:value={data.board.content_text}
+				cols="30"
+				rows="10"
+				placeholder="content"
+			/>
 		</div>
 
 		<div class="col-12">
@@ -84,7 +89,8 @@
 
 		<hr class="my-4" />
 
-		<button class="w-100 btn btn-primary btn-lg" type="button" on:click={createBoard}>Create</button>
+		<button class="w-100 btn btn-primary btn-lg" type="button" on:click={createBoard}>Create</button
+		>
 	</div>
 </div>
 
