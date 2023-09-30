@@ -44,6 +44,12 @@ model board {
   deleted_at        DateTime? @db.DateTime(0)
 }
 
+model board_like {
+  id        Int  @id @default(autoincrement())
+  board_id  Int?
+  user_id   Int?
+}
+
 enum UserRank {
   USER
   MANAGER

@@ -1,4 +1,5 @@
 <script>
+	import BoardLike from '../../../../domain/component/BoardLike.svelte';
 	import Footer from '../../../template/Footer.svelte';
 	import Header from '../../../template/Header.svelte';
 
@@ -28,6 +29,9 @@
 		</div>
 		<div>
 			{data.board.content_text}
+		</div>
+		<div>
+			<BoardLike boardId={data.board.id} userId={data.user?.id} />
 		</div>
 		{#if data.user && data.user.id === data.board.user_id}
 			<div>
