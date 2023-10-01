@@ -142,7 +142,7 @@
 					</form>
 				</div>
 
-				{#each comment.sub as subComment}
+				{#each (comment.sub).reverse() as subComment}
 					<div class="ms-3">
 						<div style="display: flex; justify-content: space-between;">
 							<div><span>└▶</span>{subComment.user_id}</div>
