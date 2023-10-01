@@ -23,6 +23,19 @@ export async function findBoardLikeByBoardIdAndUserId(boardId, userId) {
     })
 }
 
+export async function countBoardLikeByBoardId(boardId) {
+    const count = await prisma.board_like.aggregate({
+		_count: {
+			id: true
+		},
+		where: {
+			board_id: parseInt(boardId)
+		}
+	});
+
+    return count._count.id;
+}
+
 
 /** == UPDATE == */
 

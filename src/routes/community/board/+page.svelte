@@ -42,7 +42,7 @@
 					<th scope="col">#</th>
 					<th scope="col">Title</th>
 					<th scope="col">Content</th>
-					<th scope="col">Creator</th>
+					<th scope="col">Nickname</th>
 					<th scope="col">Date</th>
 				</tr>
 			</thead>
@@ -51,7 +51,10 @@
 					<tr>
 						<th scope="row">{board.id}</th>
 						<td><a href="/community/board/{board.id}" style="color:black">{board.title}</a></td>
-						<td><a href="/community/board/{board.id}" style="color:black">{board.content_text}</a></td>
+						<td
+							><a href="/community/board/{board.id}" style="color:black">{board.content_text}</a
+							></td
+						>
 						<td>{board.user_id}</td>
 						<td>{board.created_at}</td>
 					</tr>

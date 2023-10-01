@@ -3,6 +3,7 @@
 
 	export let boardId;
 	export let userId;
+    export let likeCount;
 
 	let pressed = false;
 
@@ -19,28 +20,37 @@
 			})
 		});
 		if (response.status === 200) {
-			alert('좋아요 성공');
 			pressed = !pressed;
+            if (pressed) {
+                likeCount = likeCount + 1;
+            } else {
+                likeCount = likeCount - 1;
+            }
 		} else {
 			alert('좋아요 실패');
 		}
 	}
 
 	onMount(async () => {
-		let response = await fetch(`/api/boardLike?boardId=${boardId}&userId=${userId}`);
-		if (response.status === 200) {
-			let result = await response.json();
+		let responseLike = await fetch(`/api/boardLike?boardId=${boardId}&userId=${userId}`);
+		if (responseLike.status === 200) {
+			let result = await responseLike.json();
 			pressed = result.pressed;
 		}
+        console.log(pressed)
 	});
 </script>
 
 {#if pressed}
-	<div>
-		<button on:click={pressLike}>❤</button>
-	</div>
+	<button on:click={pressLike}>❤</button><span>{likeCount}</span>
 {:else}
-	<div>
-		<button on:click={pressLike}>🤍</button>
-	</div>
+	<button on:click={pressLike}>🤍</button><span>{likeCount}</span>
 {/if}
+
+
+<style>
+	button {
+		border: 0;
+        background-color: transparent;
+	}
+</style>

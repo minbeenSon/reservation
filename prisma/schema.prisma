@@ -45,9 +45,19 @@ model board {
 }
 
 model board_like {
-  id        Int  @id @default(autoincrement())
-  board_id  Int?
-  user_id   Int?
+  id       Int  @id @default(autoincrement())
+  board_id Int?
+  user_id  Int?
+}
+
+model board_comment {
+  id         Int       @id @default(autoincrement())
+  comment_id Int?
+  board_id   Int?
+  content    String?
+  user_id    Int?
+  created_at DateTime? @db.DateTime(0)
+  deleted_at DateTime? @db.DateTime(0)
 }
 
 enum UserRank {

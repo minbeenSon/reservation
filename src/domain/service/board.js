@@ -29,11 +29,15 @@ export async function findBoardByBoardId(boardId) {
 export async function findBoardList(searchPart, searchText) {
 
     let searchParamsOR = [];
-    if (searchPart !== 'title') {
+    if (searchPart === 'title') {
+        searchParamsOR.push({ title: { contains: searchText } });
+    }
+    if (searchPart === 'content') {
         searchParamsOR.push({ content_text: { contains: searchText } });
     }
-    if (searchPart !== 'content') {
+    if (!searchPart) {
         searchParamsOR.push({ title: { contains: searchText } });
+        searchParamsOR.push({ content_text: { contains: searchText } });
     }
 
     return prisma.board.findMany({
