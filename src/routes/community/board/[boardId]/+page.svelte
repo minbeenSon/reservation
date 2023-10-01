@@ -43,10 +43,10 @@
 	<h1>BOARD DETIAL</h1>
 
 	<div class="pt-5 pb-5">
-		<h3>
+		<h3 class="mb-5">
 			{data.board.title}
 		</h3>
-		<div>
+		<div class="mb-5">
 			{data.board.content_text}
 		</div>
 		<div style="display: flex;">
@@ -63,7 +63,7 @@
 		</div>
 
 		{#if data.user && data.user.id === data.board.user_id}
-			<div>
+			<div class="my-3">
 				<a
 					href="/community/board/write/{data.board.id}"
 					class="w-25 btn btn-primary btn-lg"
