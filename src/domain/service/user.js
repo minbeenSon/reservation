@@ -102,6 +102,16 @@ export async function findUserList(manager, deleted, searchPart, searchText) {
     });
 }
 
+export async function findUserListForVote(userIdList) {
+    return prisma.user.findMany({
+        where: {
+            id: {
+                in: userIdList
+            }
+        }
+    });
+}
+
 
 /** == UPDATE == */
 export async function updateUser(user) {

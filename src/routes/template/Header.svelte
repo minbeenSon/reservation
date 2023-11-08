@@ -33,7 +33,7 @@
 				<li>
 					<a href="/reservation" class:active-menu={activeMenu === 'RESERVATION'}>RESERVATION</a>
 				</li>
-				<li><a href="/community" class:active-menu={activeMenu === 'COMMUNITY'}>COMMUNITY</a></li>
+				<li><a href="/community/vote" class:active-menu={activeMenu === 'COMMUNITY'}>COMMUNITY</a></li>
 				<li><a href="/mypage" class:active-menu={activeMenu === 'MYPAGE'}>MY PAGE</a></li>
 			</ul>
 			<div class="navbar-log active">
@@ -56,7 +56,7 @@
 				<li><a href="#">예약하기</a></li>
 				<li><a href="#">나의예약</a></li>
 			{:else if activeMenu === 'COMMUNITY'}
-				<li><a href="#">프로필</a></li>
+				<li><a href="/community/vote">투표</a></li>
 				<li><a href="#">나의일상</a></li>
 				<li><a href="/community/board">방명록</a></li>
 			{:else if activeMenu === 'MYPAGE'}

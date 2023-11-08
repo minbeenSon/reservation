@@ -3,7 +3,6 @@
 	import Header from '../../template/Header.svelte';
 
 	export let data;
-	console.log(data);
 </script>
 
 <Header activeMenu="COMMUNITY" isLogedIn={data.user} />
@@ -34,7 +33,7 @@
 			</div>
 		</div>
 		<div class="my-3">
-			<a href="/community/board/write/new" class="btn btn-primary btn-lg" type="button">Write</a>
+			<a href="/community/board/write/new" class="btn btn-primary btn-lg" type="button">Write Board</a>
 		</div>
 		<table class="table table-striped">
 			<thead>
